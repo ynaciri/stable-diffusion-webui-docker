@@ -13,7 +13,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   pip install -r requirements.txt
 
 RUN --mount=type=cache,target=/root/.cache/pip \
-  pip uninstall torch torchvision torchaudio && \
+  pip uninstall -y torch torchvision torchaudio && \
   pip install -U torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 
 WORKDIR ${ROOT}
