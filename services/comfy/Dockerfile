@@ -12,6 +12,9 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   git reset --hard v0.3.41 && \
   pip install -r requirements.txt
 
+RUN --mount=type=cache,target=/root/.cache/pip \
+  pip install -U torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+
 WORKDIR ${ROOT}
 COPY . /docker/
 RUN chmod u+x /docker/entrypoint.sh && cp /docker/extra_model_paths.yaml ${ROOT}
