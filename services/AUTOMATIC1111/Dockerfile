@@ -38,7 +38,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   pip install typing_extensions==4.11.0
 
 RUN --mount=type=cache,target=/root/.cache/pip \
-  pip uninstall torch torchvision torchaudio \
+  pip uninstall torch torchvision torchaudio && \
   pip install -U torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 
 ENV ROOT=/stable-diffusion-webui
