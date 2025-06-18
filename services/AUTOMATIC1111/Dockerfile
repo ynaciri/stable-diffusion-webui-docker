@@ -14,7 +14,7 @@ RUN . /clone.sh generative-models https://github.com/Stability-AI/generative-mod
 RUN . /clone.sh stable-diffusion-webui-assets https://github.com/AUTOMATIC1111/stable-diffusion-webui-assets 6f7db241d2f8ba7457bac5ca9753331f0c266917
 
 
-FROM pytorch/pytorch:2.3.0-cuda12.1-cudnn8-runtime
+FROM pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
@@ -33,6 +33,9 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   git reset --hard v1.9.4 && \
   pip install -r requirements_versions.txt
 
+RUN --mount=type=cache,target=/root/.cache/pip \
+  pip uninstall -y typing_extensions && \
+  pip install typing_extensions==4.11.0
 
 ENV ROOT=/stable-diffusion-webui
 
